@@ -2,5 +2,6 @@ __pycache__
 *.pyc
 .env
 */staticfiles
-*.db
+**/db.sqlite3
 README.MD
+**/migrations/*
