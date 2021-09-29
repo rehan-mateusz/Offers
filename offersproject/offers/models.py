@@ -38,6 +38,13 @@ class Category(models.Model):
         adjust_ordering(get_categories_amount()-1, self.ordering)
         super().delete()
 
+    class Meta:
+        constraints = [
+            models.CheckConstraint(check=models.Q(ordering__gte=1),
+                name='ordering_gte_1'),
+        ]
+
+
 class Offer(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
