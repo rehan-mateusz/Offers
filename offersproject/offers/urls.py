@@ -8,6 +8,7 @@ app_name = 'offers'
 
 router=DefaultRouter()
 router.register('offers', views.OfferViewSet)
+router.register('category', views.OfferViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
