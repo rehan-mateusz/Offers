@@ -1,0 +1,16 @@
+<h2> Offers list:</h2>
+
+<ul *ngFor="let offer of offers">
+  <li><h1 (click)="getOfferDetails(offer['id'])">{{offer['title']}}</h1>
+    <ul *ngIf="detailsList.has(offer['id'])">
+      <li>{{detailsList.get(offer['id']).title}}</li>
+      <li>{{detailsList.get(offer['id']).description}}</li>
+      <li>{{detailsList.get(offer['id']).category_id}}</li>
+      <li>{{detailsList.get(offer['id']).price}}</li>
+      <li>{{detailsList.get(offer['id']).created_at}}</li>
+      <li>{{detailsList.get(offer['id']).id}}</li>
+      <li>{{detailsList.get(offer['id'])}}</li>
+    </ul>
+  </li>
+
+</ul>
