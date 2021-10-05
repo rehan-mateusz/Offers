@@ -7,3 +7,4 @@ pytest-django
 pytest-cov
 django-environ
 django-cors-headers
+factory_boy

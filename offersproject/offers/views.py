@@ -11,6 +11,7 @@ class OfferViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.OfferSerializer
     queryset = models.Offer.objects.all()
     filterset_class = filters.OfferFilter
+    http_method_names = ['get', 'post', 'put', 'delete']
 
     def list(self, request):
         queryset = self.get_queryset()

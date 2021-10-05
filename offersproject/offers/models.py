@@ -3,7 +3,7 @@ from django.db.models import F
 from django.core.validators import MaxValueValidator
 from django.core.validators import MinValueValidator
 
-def get_categories_amount():
+def get_max_categories_amount():
     return Category.objects.all().count() + 1
 
 def adjust_ordering(new_ordering, old_ordering):
@@ -18,9 +18,9 @@ def adjust_ordering(new_ordering, old_ordering):
 class Category(models.Model):
     name = models.CharField(max_length=100)
     ordering = models.PositiveIntegerField(
-        default=get_categories_amount,
+        default=get_max_categories_amount,
         validators=[
-            MaxValueValidator(get_categories_amount),
+            MaxValueValidator(get_max_categories_amount),
             MinValueValidator(1)])
 
     def __str__(self):
@@ -35,7 +35,7 @@ class Category(models.Model):
         super().save(*args, **kwargs)
 
     def delete(self):
-        adjust_ordering(get_categories_amount()-1, self.ordering)
+        adjust_ordering(get_max_categories_amount()-1, self.ordering)
         super().delete()
 
     class Meta:
