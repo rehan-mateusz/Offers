@@ -36,7 +36,7 @@ $ python manage.py createsuperuser
 
 Preferably create a virtual environment.
 
-cd to /Images
+cd to /Offers
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install packages.
 ```
 pip install -r requirements.txt
