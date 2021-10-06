@@ -2,18 +2,48 @@ version: "3.7"
 
 services:
 
-  webapp:
-    container_name: offersproject_web
+  offers-django:
+    container_name: offers_django
     tty: true
     build:
       context: .
+    restart: on-failure:1
     ports:
       - "8000:8000"
     volumes:
       - ./offersproject:/offersproject
     command: |
-      sh -c "pytest"
+      sh -c
+      "python manage.py makemigrations &&
+      python manage.py migrate &&
+      python manage.py runserver 0:8000"
+    depends_on:
+      - db
 
-      # "python manage.py makemigrations &&
-      # python manage.py migrate &&
-      # python manage.py runserver 0:8000"
+  offers-ng:
+    container_name: offers_ng
+    build:
+      context: .
+      dockerfile: Dockerfile-ng
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./offers-ng:/offers-ng
+    command: >
+      sh -c "/offers-ng/node_modules/.bin/ng serve --host 0.0.0.0"
+
+  db:
+    container_name: offers_db
+    image: "postgres:11"
+    ports:
+        - '5432:5432'
+    env_file: ./offersproject/offersproject/.env
+    environment:
+      - POSTGRES_DB=offers_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgrespassword
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

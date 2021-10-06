@@ -49,7 +49,7 @@ INSTALLED_APPS += [
     'rest_framework',
     'django_filters',
     'corsheaders',
-    'factory'
+    'factory',
 ]
 
 # My apps
@@ -96,8 +96,15 @@ WSGI_APPLICATION = 'offersproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'offers_db',
+        'USER': 'postgres',
+        'PASSWORD': 'postgrespassword',
+        'HOST': 'db',
+        'PORT': '5432',
+        'TEST': {
+            'NAME': 'test_db',
+        },
     }
 }
 

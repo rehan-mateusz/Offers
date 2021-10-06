@@ -2,6 +2,7 @@ Django==3.2.3
 djangorestframework
 django-filter
 requests
+psycopg2-binary
 pytest
 pytest-django
 pytest-cov

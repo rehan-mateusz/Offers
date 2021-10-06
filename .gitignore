@@ -1,6 +1,4 @@
 __pycache__
 *.pyc
 .env
-*/staticfiles
 README.MD
-**/migrations/*

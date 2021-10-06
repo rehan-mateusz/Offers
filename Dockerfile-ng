@@ -1,0 +1,10 @@
+FROM node:alpine
+
+COPY ./offers-ng /offers-ng
+
+WORKDIR /offers-ng
+
+
+RUN npm install
+
+EXPOSE 4200
